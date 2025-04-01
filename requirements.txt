@@ -1,1 +1,8 @@
+fastapi
 nixtla
+numpy
+pandas
+pytz
+SQLAlchemy
+yfinance
+zenml
