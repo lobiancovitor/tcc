@@ -22,8 +22,12 @@ def data_loader(
     Returns:
         A pandas DataFrame containing the historical data.
     """
-    dataset = yf.download(ticker, start=start_date)
-
+    dataset = yf.download(
+        ticker, start=start_date, multi_level_index=False
+    )
+    dataset = dataset.reset_index()
+    dataset['Date'] = pd.to_datetime(dataset['Date'])
+    
     if dataset.empty:
         raise ValueError(f"No data found for ticker {ticker}.")
 

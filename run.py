@@ -1,6 +1,11 @@
-from steps.data_loader import data_loader
-from steps.data_preprocessor import data_preprocessor
+from steps import (
+    data_loader, 
+    data_preprocessor, 
+    inference_predict,
+    model_evaluator
+)
 
+from nixtla import NixtlaClient
 from zenml import pipeline
 from zenml.logger import get_logger
 
@@ -15,7 +20,10 @@ logger = get_logger(__name__)
 @pipeline
 def inference():
     dataset = data_loader()
-    data_preprocessor(dataset)
+    df_inference = data_preprocessor(dataset)
+    forecast_df = inference_predict(df_inference)
+    model_evaluator(dataset, forecast_df)
+
 
 if __name__ == "__main__":
     inference()

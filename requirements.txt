@@ -1,8 +1,11 @@
 fastapi
 nixtla
+matplotlib
 numpy
 pandas
+pandas_market_calendars
 pytz
+scikit-learn
 SQLAlchemy
 yfinance
 zenml
